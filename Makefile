@@ -21,6 +21,9 @@ integration_test: int_db
 	@echo "running test files"
 	$(GO) test -tags integration $(GO_TEST_FLAGS)
 
+build:
+	$(GO) build
+
 clean:
 	docker kill $(DOCKER_DB) && \
 	docker rm $(DOCKER_DB)
