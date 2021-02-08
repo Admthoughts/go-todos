@@ -1,3 +1,5 @@
+// +build integration
+
 package main
 
 import (
@@ -12,6 +14,12 @@ import (
 	"strconv"
 	"testing"
 	"time"
+)
+
+const(
+	APP_USER = "tester"
+	APP_PASSWORD = "testerpassword"
+	APP_DB = "testing_db"
 )
 
 var (
@@ -33,9 +41,9 @@ const (
 
 func TestMain(m *testing.M) {
 	a.Initialize(
-		os.Getenv("TODO_USER"),
-		os.Getenv("TODO_PASS"),
-		tableName)
+		APP_USER,
+		APP_PASSWORD,
+		APP_DB)
 	ensureTableExists()
 	code := m.Run()
 	clearTable()
