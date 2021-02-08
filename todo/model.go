@@ -1,4 +1,4 @@
-package main
+package todo
 
 import (
 	"database/sql"
@@ -33,6 +33,7 @@ type SQLDB interface {
 	Exec(query string, args ...interface{}) (sql.Result, error)
 	Query(query string, args ...interface{}) (*sql.Rows, error)
 	QueryRow(query string, args ...interface{}) *sql.Row
+	Ping() error
 }
 
 type SQLResult interface {
@@ -48,6 +49,13 @@ func writeResponse(res Response, w *http.ResponseWriter) {
 	}
 
 	fmt.Fprintf(*w, "%s\n", bytes)
+}
+
+func (t *Todo) checkDB(db SQLDB) error {
+	if err := db.Ping(); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (t *Todo) newTodo(db SQLDB) error {

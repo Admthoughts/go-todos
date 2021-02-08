@@ -6,6 +6,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/Admthoughts/go-todo/todo"
 	"log"
 	"math/rand"
 	"net/http"
@@ -23,7 +24,7 @@ const(
 )
 
 var (
-	a App
+	a todo.App
 )
 
 const (
