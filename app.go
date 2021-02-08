@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
-	"github.com/sirupsen/logrus"
-	"log"
+	log "github.com/sirupsen/logrus"
+	"io"
 	"net/http"
 	"strconv"
 )
@@ -31,6 +31,7 @@ func (a *App) Initialize(user, pass, dbname string) {
 }
 
 func (a *App) initializeRoutes(){
+	a.Router.HandleFunc("/healthz", Healthz).Methods("GET")
 	a.Router.HandleFunc("/todos", a.getTodos).Methods("GET")
 	a.Router.HandleFunc("/todos", a.createTodo).Methods("POST")
 	a.Router.HandleFunc("/todos/{id:[0-9]+}", a.getTodo).Methods("GET")
@@ -39,7 +40,16 @@ func (a *App) initializeRoutes(){
 }
 
 func (a *App) Run(addr string) {
-	logrus.Fatal(http.ListenAndServe(":8080", a.Router))
+	log.Fatal(http.ListenAndServe(":8080", a.Router))
+}
+
+func Healthz(w http.ResponseWriter, r *http.Request) {
+	log.Info("API Health is OK")
+	w.Header().Set("Content-Type", "application/json")
+	i, err := io.WriteString(w, `{"alive", true}`)
+	if err != nil {
+		log.Errorf("error writing request: %v bytes written: %v", err, i)
+	}
 }
 
 func (a *App) getTodo(w http.ResponseWriter, r *http.Request) {
