@@ -9,7 +9,18 @@
 
 ## Building and running
 
-The easiest way to 
+The easiest way to build the app would be via the Makefile:
+```bash
+make build
+```
+
+Which would give you the binary.
+
+To run something more useful, you can use the provided kubernetes config which can be run in a test cluster:
+```bash
+kubectl apply -f k8s/
+```
+_Not prod ready!_
 
 Adapted from
 [Semaphore Tutorial](https://semaphoreci.com/community/tutorials/building-and-testing-a-rest-api-in-go-with-gorilla-mux-and-postgresql)
