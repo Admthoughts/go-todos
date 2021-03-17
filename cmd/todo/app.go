@@ -25,6 +25,10 @@ type Err struct {
 	Msg string
 }
 
+type Health struct {
+	Msg string
+}
+
 type AppError struct {
 	Err
 }
@@ -91,6 +95,8 @@ func (a *App) Healthz(w http.ResponseWriter, r *http.Request) {
 		log.Errorf("Error checking database: %v", err)
 		respondWithError(w, http.StatusInternalServerError, newDBError(err.Error()))
 	}
+	h := Health{Msg: "everything working ok"}
+	respondWithJSON(w, http.StatusOK, h)
 }
 
 func (a *App) CheckDB() error {
