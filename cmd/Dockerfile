@@ -1,7 +1,7 @@
 ARG GO_VERS=1.15.7
 FROM golang:$GO_VERS AS build
 WORKDIR /go/src/go-todos
-ADD . .
+ADD .. .
 RUN go mod download && \
     go test -v -cover
 RUN go build -o /go/bin/todos

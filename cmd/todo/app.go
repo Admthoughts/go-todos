@@ -136,7 +136,7 @@ func (a *App) getTodos(w http.ResponseWriter, r *http.Request) {
 
 	todos, err := getTodos(a.DB, start, count)
 	if err != nil {
-		respondWithError(w, http.StatusInternalServerError,newAppErr(err.Error()))
+		respondWithError(w, http.StatusInternalServerError, newAppErr(err.Error()))
 	}
 	respondWithJSON(w, http.StatusOK, todos)
 }
@@ -145,7 +145,7 @@ func (a *App) createTodo(w http.ResponseWriter, r *http.Request) {
 	var t Todo
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&t); err != nil {
-		respondWithError(w, http.StatusBadRequest,newAppErr("Invalid request payload"))
+		respondWithError(w, http.StatusBadRequest, newAppErr("Invalid request payload"))
 		return
 	}
 	defer r.Body.Close()

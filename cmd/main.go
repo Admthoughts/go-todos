@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/Admthoughts/go-todo/todo"
+	"github.com/LinuxAd/go-todos/cmd/todo"
 	log "github.com/sirupsen/logrus"
 	"os"
 )

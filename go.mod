@@ -1,9 +1,3 @@
-module github.com/Admthoughts/go-todo
+module github.com/LinuxAd/go-todos
 
-go 1.14
-
-require (
-	github.com/gorilla/mux v1.8.0
-	github.com/lib/pq v1.9.0
-	github.com/sirupsen/logrus v1.7.0
-)
+go 1.16

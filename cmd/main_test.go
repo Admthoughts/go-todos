@@ -6,7 +6,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/Admthoughts/go-todo/todo"
+	"github.com/Admthoughts/go-todo/cmd/todo"
 	"log"
 	"math/rand"
 	"net/http"

@@ -19,7 +19,7 @@ int_db:
 
 integration_test: int_db
 	@echo "running test files"
-	$(GO) test -tags integration $(GO_TEST_FLAGS)
+	$(GO) test -tags integration $(GO_TEST_FLAGS) ./...
 
 build:
 	$(GO) build
